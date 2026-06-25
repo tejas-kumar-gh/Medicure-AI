@@ -1,7 +1,7 @@
 import asyncHandler from '../utils/asyncHandler.js';
 import Chat from '../models/Chat.js';
 import Profile from '../models/Profile.js';
-import { getAIResponse } from '../services/openaiService.js';
+import { getAIResponse } from '../services/geminiService.js';
 
 // @desc    Send a message and get AI response
 // @route   POST /api/chat/message
@@ -37,7 +37,7 @@ export const sendMessage = asyncHandler(async (req, res) => {
   // Combine context with current user query
   const queryWithContext = contextPrompt + message;
 
-  // 4. Request OpenAI response
+  // 4. Request Gemini response
   const aiResponse = await getAIResponse(aiHistory, queryWithContext);
 
   // 5. Save the plain user message and assistant reply to DB

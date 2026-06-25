@@ -109,7 +109,7 @@ Create a `.env` file in the `backend/` directory:
 PORT=5000
 MONGO_URI=mongodb+srv://<username>:<password>@cluster.mongodb.net/medicure?retryWrites=true&w=majority
 JWT_SECRET=your_jwt_signing_secret_here
-OPENAI_API_KEY=your_openai_api_key_here
+GEMINI_API_KEY=your_gemini_api_key_here
 CLIENT_URL=http://localhost:5173
 NODE_ENV=development
 ```
@@ -181,7 +181,7 @@ All routes (except Auth Login & Register) are protected and require the HttpOnly
    * `PORT`: `10000` (Render binds this automatically)
    * `MONGO_URI`: `your_atlas_connection_string`
    * `JWT_SECRET`: `your_production_jwt_signing_key`
-   * `OPENAI_API_KEY`: `your_openai_api_key`
+   * `GEMINI_API_KEY`: `your_gemini_api_key`
    * `CLIENT_URL`: `https://your-frontend-vercel-domain.vercel.app`
 6. Click **Deploy Web Service**. Save your web service URL (e.g. `https://medicure-backend.onrender.com`).
 
