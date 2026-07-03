@@ -2,9 +2,10 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Toaster } from 'react-hot-toast';
-import { AuthProvider } from './context/AuthContext';
+import { AuthProvider, useAuth } from './context/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute';
 import Layout from './components/Layout';
+import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
 import HealthProfile from './pages/HealthProfile';
 import AIChat from './pages/AIChat';
@@ -22,6 +23,13 @@ const queryClient = new QueryClient({
   },
 });
 
+// Smart root redirect: logged-in users → /dashboard, guests → Home page
+const RootRedirect = () => {
+  const { user, loading } = useAuth();
+  if (loading) return null;
+  return user ? <Navigate to="/dashboard" replace /> : <Home />;
+};
+
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
@@ -29,13 +37,14 @@ function App() {
         <Router>
           <Routes>
             {/* Public Routes */}
+            <Route path="/" element={<RootRedirect />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
 
             {/* Protected Routes */}
             <Route element={<ProtectedRoute />}>
               <Route element={<Layout />}>
-                <Route path="/" element={<Dashboard />} />
+                <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/profile" element={<HealthProfile />} />
                 <Route path="/chat" element={<AIChat />} />
                 <Route path="/recommendations" element={<Recommendations />} />
@@ -75,3 +84,4 @@ function App() {
 }
 
 export default App;
+

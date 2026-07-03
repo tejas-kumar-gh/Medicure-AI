@@ -4,7 +4,7 @@ import { LayoutDashboard, UserSquare2, Bot, Sparkles, X } from 'lucide-react';
 
 export const Sidebar = ({ isOpen, toggleSidebar }) => {
   const navItems = [
-    { name: 'Dashboard', path: '/', icon: LayoutDashboard },
+    { name: 'Dashboard', path: '/dashboard', icon: LayoutDashboard },
     { name: 'Health Profile', path: '/profile', icon: UserSquare2 },
     { name: 'AI Chatbot', path: '/chat', icon: Bot },
     { name: 'Recommendations', path: '/recommendations', icon: Sparkles },

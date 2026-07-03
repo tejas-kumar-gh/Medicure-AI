@@ -16,7 +16,7 @@ export const Login = () => {
     setIsSubmitting(true);
     try {
       await login(email, password);
-      navigate('/');
+      navigate('/dashboard');
     } catch (err) {
       // Axios interceptor will handle displaying standard messages
     } finally {
