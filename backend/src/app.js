@@ -17,9 +17,13 @@ const app = express();
 app.use(helmet());
 
 // 2. CORS configuration (allowing local dev and custom client URL)
+const clientUrls = process.env.CLIENT_URL
+  ? process.env.CLIENT_URL.split(',').map(url => url.trim())
+  : [];
+
 const allowedOrigins = [
   'http://localhost:5173',
-  process.env.CLIENT_URL,
+  ...clientUrls,
 ].filter(Boolean);
 
 app.use(
